@@ -75,8 +75,14 @@ export const SignupPage = () => {
         {message && <p className="text-center">{message}</p>}
         <p className="text-center">
           Already have an account?{" "}
-          <Link to="/" className="text-blue-500">
+          <Link to="/login" className="text-blue-500">
             Login
+          </Link>
+        </p>
+        <p className="text-center">
+          Register as a Groundowener?{" "}
+          <Link to="/register-ground-owner" className="text-blue-500">
+            Register
           </Link>
         </p>
       </div>

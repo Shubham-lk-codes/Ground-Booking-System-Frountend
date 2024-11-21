@@ -1,44 +1,45 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import axios from 'axios';
 
-export const PaymentPage = () => {
+export const BookGround = ({ groundId, userId }) => {
+  const [amount, setAmount] = useState(500); // Example amount
+  const [paymentStatus, setPaymentStatus] = useState('');
+
   const handlePayment = async () => {
     try {
-      
-      const {data:{key}}= await axios.post("http://localhost:5000/api/getkey")
-
-      // Step 1: Create an order on the server
-      const { data: order } = await axios.post('/api/payment/create-order', {
-        amount: 500, // Amount in INR
+      // Step 1: Create order on backend
+      const { data } = await axios.post('/api/payments/create-order', {
+        amount,
+        groundId,
+        userId,
       });
 
-      // Step 2: Display Razorpay payment modal
       const options = {
-        key, // Razorpay key_id
-        amount: order.amount,
-        currency: order.currency,
-        name: 'Your Company Name',
-        description: 'Test Transaction',
-        order_id: order.id,
-        handler: async function (response) {
-          // Step 3: Verify payment on the server
-          const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
-          const verification = await axios.post('/api/payment/verify-payment', {
-            razorpay_payment_id,
-            razorpay_order_id,
-            razorpay_signature,
-          });
-
-          if (verification.data.success) {
-            alert('Payment Successful!');
-          } else {
-            alert('Payment Verification Failed!');
+        key: data.key, // Razorpay key
+        amount: data.amount, // Amount in paise
+        currency: data.currency,
+        name: 'Ground Booking',
+        description: `Booking for Ground ID: ${groundId}`,
+        order_id: data.orderId, // Order ID from backend
+        handler: async (response) => {
+          try {
+            // Step 3: Verify payment on backend
+            const verifyRes = await axios.post('/api/payments/verify-payment', response);
+            if (verifyRes.data.success) {
+              setPaymentStatus('Payment Successful! Your booking is confirmed.');
+            } else {
+              setPaymentStatus('Payment verification failed.');
+            }
+          } catch (error) {
+            console.error('Error verifying payment:', error);
+            setPaymentStatus('Error verifying payment.');
           }
         },
         prefill: {
-          name: 'Customer Name',
-          email: 'customer@example.com',
+          name: 'Your Name',
+          email: 'your.email@example.com',
           contact: '9999999999',
         },
         theme: {
@@ -46,21 +47,38 @@ export const PaymentPage = () => {
         },
       };
 
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
     } catch (error) {
-      console.error('Error in payment:', error);
+      console.error('Error creating Razorpay order:', error);
+      setPaymentStatus('Error initiating payment.');
     }
   };
 
   return (
-    <div className="payment-page">
-      <h1>Pay with Razorpay</h1>
-      <button onClick={handlePayment} className="btn btn-primary">
+    <div className="flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
+      <h2 className="text-2xl font-bold text-gray-700 mb-4">Book Ground</h2>
+      <p className="text-lg text-gray-600 mb-4">Amount: ₹{amount}</p>
+      <button
+        onClick={handlePayment}
+        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
+      >
         Pay Now
       </button>
+      {paymentStatus && (
+        <p
+          className={`mt-4 text-center font-semibold ${
+            paymentStatus.includes('Successful')
+              ? 'text-green-600'
+              : 'text-red-600'
+          }`}
+        >
+          {paymentStatus}
+        </p>
+      )}
     </div>
   );
 };
 
-export default PaymentPage;
+export default BookGround;
+``

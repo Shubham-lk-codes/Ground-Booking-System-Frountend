@@ -19,6 +19,7 @@ export const LoginPage = () => {
       const response = await axios.post("http://localhost:5000/api/auth/login", loginData, { withCredentials: true });
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); 
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/"); 
       }
     } catch (error) {

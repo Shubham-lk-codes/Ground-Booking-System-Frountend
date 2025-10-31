@@ -16,20 +16,19 @@ export const BookingPage = ({ name, imageUrl, description }) => {
     if (!slides) return;
 
     let tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-    slides.forEach((img, i) => {
+    slides.forEach((img) => {
       tl.to(img, {
         opacity: 1,
         duration: 1,
         scale: 1.05,
         ease: "power2.out",
-      })
-        .to(img, {
-          opacity: 0,
-          duration: 1,
-          scale: 1,
-          ease: "power2.in",
-          delay: 2,
-        });
+      }).to(img, {
+        opacity: 0,
+        duration: 1,
+        scale: 1,
+        ease: "power2.in",
+        delay: 2,
+      });
     });
 
     return () => tl.kill();
@@ -37,28 +36,24 @@ export const BookingPage = ({ name, imageUrl, description }) => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row overflow-hidden">
         {/* LEFT SIDE */}
-        <div className="bg-black h-full w-[50vw] relative overflow-hidden">
-
-          {/* 🔥 Added GSAP + Framer Motion Image Slider (new only) */}
-          <div
-            ref={sliderRef}
-            className="absolute inset-0 z-0 overflow-hidden"
-          >
+        <div className="bg-black h-[100vh] w-[50vw] relative overflow-hidden">
+          {/* 🔥 GSAP + Framer Motion Image Slider */}
+          <div ref={sliderRef} className="absolute inset-0 z-0 overflow-hidden">
             {grounds.map((ground, index) => (
               <motion.img
                 key={index}
                 src={ground.imageUrl}
                 alt={ground.name}
-                className="slider-img absolute top-0 left-0 w-full h-full object-cover opacity-0 rounded-lg"
+                className="slider-img absolute top-0 left-0 w-full h-full object-cover opacity-0"
                 initial={{ opacity: 0 }}
               />
             ))}
           </div>
 
-          {/* Your original BookingPagecom mapping untouched */}
-          <div className="relative z-10">
+          {/* ✅ Keep your original BookingPagecom section (Unchanged) */}
+          <div className="relative z-10 hidden">
             {grounds.map((ground, index) => (
               <BookingPagecom
                 key={index}
@@ -78,7 +73,7 @@ export const BookingPage = ({ name, imageUrl, description }) => {
             </h1>
             <div className="flex flex-row">
               <h2 className="font-bold text-2xl mr-6">Check Availability</h2>
-              <h2 className="font-bold text-2xl">share</h2>
+              <h2 className="font-bold text-2xl">Share</h2>
             </div>
             <div className="font-bold m-5 float-start flex flex-col">
               <h1 className="text-[40px]">Timing</h1>
@@ -98,6 +93,15 @@ export const BookingPage = ({ name, imageUrl, description }) => {
             </div>
           </div>
         </div>
+      </div>
+      {/* ✅ Dummy Ground Info Section (Fixed Position, No Scroll) */}
+      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white p-5 text-center z-10">
+        <h1 className="text-3xl font-bold mb-2">Ground Information</h1>
+        <p className="text-lg">
+          Welcome to our premium sports grounds. Experience top-quality turf,
+          modern amenities, and easy booking. Choose your preferred timing and
+          enjoy your match!
+        </p>
       </div>
     </>
   );

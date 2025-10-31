@@ -2,33 +2,83 @@
 /* eslint-disable no-undef */
 
 // eslint-disable-next-line no-unused-vars
-
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
 import { grounds } from "../components/GroundData";
 import { BookingPagecom } from "../components/BookingPageComp";
 
-// eslint-disable-next-line no-unused-vars
 export const BookingPage = ({ name, imageUrl, description }) => {
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+    const slides = sliderRef.current?.querySelectorAll(".slider-img");
+    if (!slides) return;
+
+    let tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+    slides.forEach((img, i) => {
+      tl.to(img, {
+        opacity: 1,
+        duration: 1,
+        scale: 1.05,
+        ease: "power2.out",
+      })
+        .to(img, {
+          opacity: 0,
+          duration: 1,
+          scale: 1,
+          ease: "power2.in",
+          delay: 2,
+        });
+    });
+
+    return () => tl.kill();
+  }, []);
+
   return (
     <>
       <div className="flex flex-row">
-        <div className="bg-black h-full w-[50vw] ">
-          {grounds.map((ground, index) => (
-            <BookingPagecom
-              key={index}
-              name={ground.name}
-              imageUrl={ground.imageUrl}
-              description={ground.description}
-            />
-          ))}
+        {/* LEFT SIDE */}
+        <div className="bg-black h-full w-[50vw] relative overflow-hidden">
+
+          {/* 🔥 Added GSAP + Framer Motion Image Slider (new only) */}
+          <div
+            ref={sliderRef}
+            className="absolute inset-0 z-0 overflow-hidden"
+          >
+            {grounds.map((ground, index) => (
+              <motion.img
+                key={index}
+                src={ground.imageUrl}
+                alt={ground.name}
+                className="slider-img absolute top-0 left-0 w-full h-full object-cover opacity-0 rounded-lg"
+                initial={{ opacity: 0 }}
+              />
+            ))}
+          </div>
+
+          {/* Your original BookingPagecom mapping untouched */}
+          <div className="relative z-10">
+            {grounds.map((ground, index) => (
+              <BookingPagecom
+                key={index}
+                name={ground.name}
+                imageUrl={ground.imageUrl}
+                description={ground.description}
+              />
+            ))}
+          </div>
         </div>
+
+        {/* RIGHT SIDE (Unchanged) */}
         <div className="h-[100vh] w-[50vw] flex justify-center">
           <div className="flex flex-col text-center mt-[15vh]">
             <h1 className="text-center font-bold text-[30px] border-2 rounded-lg border-b-2 mb-5 pl-10 pr-10 bg-green-600">
               Book Now
             </h1>
             <div className="flex flex-row">
-            <h2 className="font-bold text-2xl mr-6">Check Availability</h2>
-            <h2 className="font-bold text-2xl">share</h2>
+              <h2 className="font-bold text-2xl mr-6">Check Availability</h2>
+              <h2 className="font-bold text-2xl">share</h2>
             </div>
             <div className="font-bold m-5 float-start flex flex-col">
               <h1 className="text-[40px]">Timing</h1>

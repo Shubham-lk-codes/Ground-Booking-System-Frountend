@@ -1,5 +1,6 @@
 import { Navbar } from "../components/navbar";
 import imageSrc from '../assets/img/1.jpg'; // Adjust the import path accordingly
+import Homeone  from "../components/Homeone";
 
 export const HomePage = () => {
     return (
@@ -16,6 +17,8 @@ export const HomePage = () => {
                     <img src={imageSrc} alt="Game Field" className="w-full h-full object-cover" />
                 </div>
             </div>
+            <Homeone />
+
         </>
     );
 }

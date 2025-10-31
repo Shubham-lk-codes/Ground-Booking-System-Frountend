@@ -29,6 +29,7 @@ export const GroundsList = () => {
           name={ground.name}
           imageUrl={ground.imageUrl}
           description={ground.description}
+          pricePerHour={ground.pricePerHour}
           onBook={() => handleBooking(ground._id)}
         />
       ))}

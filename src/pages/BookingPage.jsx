@@ -13,6 +13,21 @@ export const BookingPage = ({ name, imageUrl, description }) => {
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [grounds, setGrounds] = useState([]);
+
+  useEffect(() => {
+    const fetchGrounds = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/grounds"); // Adjust API endpoint
+        setGrounds(response.data.grounds);
+      } catch (error) {
+        console.error("Error fetching grounds:", error);
+      }
+    };
+
+    fetchGrounds();
+  }, []);
+
   useEffect(() => {
     const slides = sliderRef.current?.querySelectorAll(".slider-img");
     if (!slides) return;
@@ -98,17 +113,7 @@ export const BookingPage = ({ name, imageUrl, description }) => {
               </button>
             </div>
 
-            {/* Keep your original BookingPagecom section (Hidden for now) */}
-            <div className="relative z-10 hidden">
-              {grounds.map((ground, index) => (
-                <BookingPagecom
-                  key={index}
-                  name={ground.name}
-                  imageUrl={ground.imageUrl}
-                  description={ground.description}
-                />
-              ))}
-            </div>
+          
           </div>
 
           {/* RIGHT SIDE (Unchanged) */}

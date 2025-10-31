@@ -28,7 +28,7 @@ export const App = () => {
           <Route path="/PaymentPage" element={<BookGround />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/grounds" element={<GroundsList />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/groundOwener-dashboard" element={<AdminDashboard />} />
           <Route path="/register-ground-owner" element={<GroundOwnerRegistration />} />
           <Route path="/admin-dashboard-for-GroundOwener" element={<AdminGroundOwnerDashboard />} />
 

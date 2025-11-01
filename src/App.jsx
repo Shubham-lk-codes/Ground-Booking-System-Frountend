@@ -25,7 +25,8 @@ export const App = () => {
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/PaymentPage" element={<BookGround />} />
+          {/* <Route path="/PaymentPage" element={<BookGround />} /> */}
+          <Route path="/grounds/:id/:name" element={<BookingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/grounds" element={<GroundsList />} />
           <Route path="/groundOwener-dashboard" element={<AdminDashboard />} />

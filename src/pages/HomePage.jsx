@@ -1,6 +1,7 @@
 import { Navbar } from "../components/navbar";
 import imageSrc from '../assets/img/1.jpg'; // Adjust the import path accordingly
 import Homeone  from "../components/Homeone";
+import Hometwo from "../components/Hometwo";
 
 export const HomePage = () => {
     return (
@@ -18,6 +19,7 @@ export const HomePage = () => {
                 </div>
             </div>
             <Homeone />
+            <Hometwo />
 
         </>
     );

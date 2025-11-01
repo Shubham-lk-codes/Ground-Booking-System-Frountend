@@ -9,21 +9,23 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check token in localStorage (you said earlier you store token there)
+    // Check token in localStorage
     const token = localStorage.getItem("token");
     if (token) setIsLoggedIn(true);
   }, []);
 
   const handleProfileClick = () => {
-    navigate("/profile"); // Redirect to profile page
+    navigate("/profile");
   };
 
   return (
     <>
       <div
-        className="h-[10vh] w-full flex flex-row items-center pt-5"
+        className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50"
       >
-        <div className="h-10 w-[10vw] bg-black text-white pl-5 pt-1">TurfArena</div>
+        <div className="h-10 w-[10vw] bg-black text-white pl-5 pt-1 flex items-center font-semibold">
+          TurfArena
+        </div>
 
         <nav className="ml-5">
           <input
@@ -37,11 +39,13 @@ export const Navbar = () => {
           <h3 className="ml-10 font-bold flex flex-row items-center">
             <MdOutlineSportsGymnastics className="mr-2" /> play
           </h3>
+
           <Link to="/grounds">
             <h3 className="ml-10 font-bold flex flex-row items-center">
               <IoFootballSharp className="mr-2" /> book
             </h3>
           </Link>
+
           <h3 className="ml-10 font-bold flex flex-row items-center">
             <FaBookOpen className="mr-2" /> learn
           </h3>
@@ -49,7 +53,6 @@ export const Navbar = () => {
 
         <div className="ml-auto mr-10 flex flex-row space-x-5 items-center">
           {isLoggedIn ? (
-            // 🔵 Profile Circle
             <div
               onClick={handleProfileClick}
               className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:bg-blue-700 transition-all"
@@ -58,8 +61,12 @@ export const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link to="/signup"><h1 className="font-bold">Sign up</h1></Link>
-              <Link to="/login"><h1 className="font-bold">Login</h1></Link>
+              <Link to="/signup">
+                <h1 className="font-bold">Sign up</h1>
+              </Link>
+              <Link to="/login">
+                <h1 className="font-bold">Login</h1>
+              </Link>
             </>
           )}
         </div>

@@ -7,7 +7,7 @@ export const HomePage = () => {
     return (
         <>
             <Navbar />
-            <div className="w-full h-screen flex flex-row mt-10">
+            <div className="w-full h-screen flex flex-row mt-10 ">
                 <div className="w-[40vw] h-[70vh] bg-white m-10 flex flex-col justify-center ">
                     <h1 className="text-2xl font-bold text-green-500 mb-5 text-[40px]">Book your game, skip the wait</h1>
                     <h1 className="text-2xl font-bold text-green-500 mb-5 text-[40px]">Game On!</h1>

@@ -89,7 +89,7 @@ function Homeone() {
   };
 
   return (
-    <div className="relative w-full py-10 bg-gray-50">
+    <div className="relative w-full py-10 bg-gray-50 h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
         Suggested Venues For You
       </h1>

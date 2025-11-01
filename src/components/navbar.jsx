@@ -23,7 +23,7 @@ export const Navbar = () => {
       <div
         className="h-[10vh] w-full flex flex-row items-center pt-5"
       >
-        <div className="h-10 w-[10vw] bg-black"></div>
+        <div className="h-10 w-[10vw] bg-black text-white pl-5 pt-1">TurfArena</div>
 
         <nav className="ml-5">
           <input

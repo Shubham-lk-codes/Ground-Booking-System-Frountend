@@ -25,40 +25,66 @@ export const GroundsList = () => {
   const slugify = (name) =>
     name
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-") // replace spaces/symbols with -
-      .replace(/^-+|-+$/g, ""); // trim hyphens
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
   const handleBooking = (id, name) => {
     const slug = slugify(name);
-    navigate(`/grounds/${id}/${slug}`); // ✅ navigate with slug
+    navigate(`/grounds/${id}/${slug}`);
   };
 
   return (
     <>
       <Navbar />
-      <div className="flex items-center gap-3 p-3 bg-gray-100 rounded-xl pt-20">
-        {/* Dropdown */}
-        <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
-          <option value="">All</option>
-          <option value="Cricket">Cricket</option>
-          <option value="Football">Football</option>
-          <option value="Tenise">Tenise</option>
-        </select>
 
-        {/* Search Field */}
-        <input
-          type="text"
-          placeholder="Search..."
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-        />
+      {/* Header + Filters (One Line Layout) */}
+      <div className="pt-24 px-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 bg-gray-100 p-4 rounded-xl shadow-sm">
+          {/* Title */}
+          <h1 className="text-lg md:text-xl font-semibold text-gray-800 whitespace-nowrap">
+            Sports Venues in Delhi: Discover & Book Nearby Venues
+          </h1>
 
-        {/* Button */}
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          Search
-        </button>
+          {/* Right Side: Dropdown + Search */}
+          <div className="flex items-center gap-3 w-full lg:w-auto">
+            {/* Dropdown */}
+            <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+              <option value="">All Sports</option>
+              <option value="Cricket">Cricket</option>
+              <option value="Football">Football</option>
+              <option value="Tennis">Tennis</option>
+            </select>
+
+            {/* Search Field */}
+            <input
+              type="text"
+              placeholder="Search venues..."
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+
+            {/* Search Button */}
+            <button className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+              Search
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="grounds-list-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5 pt-20">
+      {/* Stats Section */}
+      <div className="flex justify-center md:justify-start gap-6 text-gray-700 text-sm md:text-base px-6 mt-6">
+        <p className="font-medium">
+          Venues <span className="text-blue-600">(180)</span>
+        </p>
+        <p className="font-medium">
+          Events <span className="text-blue-600">(4)</span>
+        </p>
+        <p className="font-medium">
+          Deals <span className="text-blue-600">(2)</span>
+        </p>
+      </div>
+
+      {/* Grounds Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
         {grounds.map((ground) => (
           <GroundItem
             key={ground._id}

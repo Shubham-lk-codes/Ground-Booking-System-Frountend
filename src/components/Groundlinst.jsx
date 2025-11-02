@@ -40,9 +40,9 @@ export const GroundsList = () => {
         {/* Dropdown */}
         <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
           <option value="">All</option>
-          <option value="grounds">Grounds</option>
-          <option value="owners">Owners</option>
-          <option value="users">Users</option>
+          <option value="Cricket">Cricket</option>
+          <option value="Football">Football</option>
+          <option value="Tenise">Tenise</option>
         </select>
 
         {/* Search Field */}

@@ -4,6 +4,8 @@ import axios from "axios";
 import GroundItem from "./GroundItem";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "./navbar";
+import { Search } from "lucide-react"; // ✅ Icon import
+import Footer from "./footer";
 
 export const GroundsList = () => {
   const [grounds, setGrounds] = useState([]);
@@ -55,17 +57,15 @@ export const GroundsList = () => {
               <option value="Tennis">Tennis</option>
             </select>
 
-            {/* Search Field */}
-            <input
-              type="text"
-              placeholder="Search venues..."
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-
-            {/* Search Button */}
-            <button className="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
-              Search
-            </button>
+            {/* Search Field with Icon */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+              <input
+                type="text"
+                placeholder="Search venues..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -96,6 +96,7 @@ export const GroundsList = () => {
           />
         ))}
       </div>
+      <Footer />
     </>
   );
 };

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BookingPagecom } from "../components/BookingPageComp";
+import Footer from "../components/footer";
 
 export const BookingPage = () => {
   const { id, name } = useParams(); // ✅ capture both id and slug name
@@ -156,6 +157,7 @@ export const BookingPage = () => {
           </motion.p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

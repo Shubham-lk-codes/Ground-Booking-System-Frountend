@@ -3,12 +3,12 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, Share2 } from "lucide-react";
 import { BookingPagecom } from "../components/BookingPageComp";
 import Footer from "../components/footer";
 
 export const BookingPage = () => {
-  const { id, name } = useParams(); // ✅ capture both id and slug name
+  const { id, name } = useParams();
   const sliderRef = useRef(null);
   const [ground, setGround] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,24 +50,6 @@ export const BookingPage = () => {
     return () => tl.kill();
   }, [ground]);
 
-  const handleNext = () => {
-    const slides = sliderRef.current?.querySelectorAll(".slider-img");
-    if (!slides) return;
-    const next = (currentIndex + 1) % slides.length;
-    gsap.to(slides[currentIndex], { opacity: 0, duration: 0.8 });
-    gsap.to(slides[next], { opacity: 1, duration: 0.8 });
-    setCurrentIndex(next);
-  };
-
-  const handlePrev = () => {
-    const slides = sliderRef.current?.querySelectorAll(".slider-img");
-    if (!slides) return;
-    const prev = (currentIndex - 1 + slides.length) % slides.length;
-    gsap.to(slides[currentIndex], { opacity: 0, duration: 0.8 });
-    gsap.to(slides[prev], { opacity: 1, duration: 0.8 });
-    setCurrentIndex(prev);
-  };
-
   if (!ground)
     return (
       <div className="h-screen flex justify-center items-center text-2xl">
@@ -77,86 +59,108 @@ export const BookingPage = () => {
 
   return (
     <>
-      <div className="flex flex-col overflow-hidden pr-20 pl-20">
-        <div className="flex flex-row overflow-hidden h-[100vh]">
-          {/* LEFT SIDE */}
-          <div className="bg-black h-[100vh] w-[50vw] relative overflow-hidden">
-            <div ref={sliderRef} className="absolute inset-0 z-0 overflow-hidden">
+      <div className="w-full flex flex-col items-center bg-gray-50 pb-20">
+        {/* ===== TOP SECTION ===== */}
+        <div className="flex flex-col w-full max-w-[1300px] px-5 lg:px-0 mt-8">
+          {/* NAME + RATING */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+              {ground.name || name}
+            </h1>
+            <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg mt-4 md:mt-0 transition">
+              Book Now
+            </button>
+          </div>
+
+          {/* LOCATION + RATING */}
+          <div className="flex items-center space-x-3 mb-4">
+            <span className="text-gray-600 text-lg">
+              📍 {ground.location || "Palace Road"}
+            </span>
+            <div className="flex items-center text-yellow-500">
+              <Star className="w-5 h-5 fill-yellow-500 text-yellow-500 mr-1" />
+              <span className="text-gray-700 font-semibold">3.5</span>
+              <span className="text-gray-500 ml-1 text-sm">(13 ratings)</span>
+              <button className="ml-3 text-green-600 text-sm font-semibold hover:underline">
+                Rate Venue
+              </button>
+            </div>
+          </div>
+
+          {/* IMAGE + DETAILS */}
+          <div className="flex flex-col lg:flex-row bg-white shadow-md rounded-lg overflow-hidden">
+            {/* LEFT IMAGE SECTION */}
+            <div
+              ref={sliderRef}
+              className="relative w-full lg:w-[65%] h-[350px] lg:h-[500px] overflow-hidden"
+            >
               <motion.img
                 src={ground.imageUrl}
                 alt={ground.name}
-                className="slider-img absolute top-0 left-0 w-full h-full object-cover opacity-0"
+                className="slider-img absolute inset-0 w-full h-full object-cover"
                 initial={{ opacity: 0 }}
               />
             </div>
 
-            <div className="absolute inset-0 flex justify-between items-center px-6 z-20">
-              <button
-                onClick={handlePrev}
-                className="bg-black/40 hover:bg-black/60 p-3 rounded-full text-white transition"
-              >
-                <ChevronLeft size={30} />
-              </button>
-              <button
-                onClick={handleNext}
-                className="bg-black/40 hover:bg-black/60 p-3 rounded-full text-white transition"
-              >
-                <ChevronRight size={30} />
-              </button>
-            </div>
-
-            <div className="relative z-10 hidden">
-              <BookingPagecom
-                name={ground.name}
-                imageUrl={ground.imageUrl}
-                description={ground.description}
-              />
-            </div>
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="h-[100vh] w-[50vw] flex justify-center">
-            <div className="flex flex-col text-center mt-[15vh]">
-              <h1 className="text-center font-bold text-[30px] border-2 rounded-lg border-b-2 mb-5 pl-10 pr-10 bg-green-600">
-                {ground.name || name}
-              </h1>
-              <div className="flex flex-row">
-                <h2 className="font-bold text-2xl mr-6">Check Availability</h2>
-                <h2 className="font-bold text-2xl">Share</h2>
+            {/* RIGHT DETAILS SECTION */}
+            <div className="w-full lg:w-[35%] bg-white p-6 flex flex-col justify-between">
+              {/* SHARE + CORPORATE */}
+              <div className="flex flex-col sm:flex-row justify-between mb-6">
+                <button className="flex items-center justify-center border border-gray-300 rounded-md py-2 px-4 mb-3 sm:mb-0 hover:bg-gray-100">
+                  <Share2 className="w-5 h-5 mr-2" /> Share
+                </button>
+                <button className="border border-gray-300 rounded-md py-2 px-4 hover:bg-gray-100 text-green-700 font-semibold">
+                  Bulk / Corporate
+                </button>
               </div>
-              <div className="font-bold m-5 flex flex-col">
-                <h3 className="text-[20px] text-gray-700">{ground.location}</h3>
-                <p className="text-[18px] text-gray-600">{ground.description}</p>
-                <p className="text-[22px] mt-2 text-green-600 font-semibold">
-                  ₹{ground.pricePerHour}/hour
+
+              {/* TIMING */}
+              <div className="border border-gray-200 rounded-md p-4 mb-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                  Timing
+                </h2>
+                <p className="text-gray-600 text-base">8 AM - 9 PM</p>
+              </div>
+
+              {/* LOCATION */}
+              <div className="border border-gray-200 rounded-md p-4">
+                <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                  Location
+                </h2>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Sports Block (behind Freedom park), Dr Manmohan Singh Bengaluru
+                  City University, Palace Road, Bangalore - 560009 (Main
+                  Entrance gate next to Cauvery Bhavana Bus stand on google
+                  maps)
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Info Section */}
-        <div className="w-full bg-black bg-opacity-80 text-white p-10 text-center">
+        {/* ===== BOTTOM INFO SECTION ===== */}
+        <div className="w-full bg-black text-white text-center py-12 mt-10">
           <motion.h1
-            className="text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 40 }}
+            className="text-3xl font-bold mb-4"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             Ground Information
           </motion.h1>
-
           <motion.p
             className="text-lg max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Welcome to our premium sports ground – {ground.name || name}. Experience top-quality turf,
-            modern amenities, and easy booking.
+            Welcome to our premium sports ground –{" "}
+            {ground.name || name}. Experience top-quality turf, modern amenities,
+            and easy booking.
           </motion.p>
         </div>
       </div>
+
       <Footer />
     </>
   );

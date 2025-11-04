@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { Star, Share2 } from "lucide-react";
+import { FaStar, FaFutbol, FaBaseballBall } from "react-icons/fa";
 import { BookingPagecom } from "../components/BookingPageComp";
 import Footer from "../components/footer";
 import { Navbar } from "../components/navbar";
@@ -13,6 +14,20 @@ export const BookingPage = () => {
   const sliderRef = useRef(null);
   const [ground, setGround] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [grounds, setGrounds] = useState([]);
+
+  useEffect(() => {
+    const fetchGrounds = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/grounds");
+        setGrounds(response.data.grounds);
+      } catch (error) {
+        console.error("Error fetching grounds:", error);
+      }
+    };
+    fetchGrounds();
+  }, []);
 
   useEffect(() => {
     const fetchGround = async () => {
@@ -60,7 +75,7 @@ export const BookingPage = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="w-full flex flex-col items-center bg-gray-50 pb-20 pt-20">
         {/* ===== TOP SECTION ===== */}
         <div className="flex flex-col w-full max-w-[1300px] px-5 lg:px-0 mt-8">
@@ -130,10 +145,10 @@ export const BookingPage = () => {
                   Location
                 </h2>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Sports Block (behind Freedom park), Dr Manmohan Singh Bengaluru
-                  City University, Palace Road, Bangalore - 560009 (Main
-                  Entrance gate next to Cauvery Bhavana Bus stand on google
-                  maps)
+                  Sports Block (behind Freedom park), Dr Manmohan Singh
+                  Bengaluru City University, Palace Road, Bangalore - 560009
+                  (Main Entrance gate next to Cauvery Bhavana Bus stand on
+                  google maps)
                 </p>
               </div>
             </div>
@@ -141,25 +156,33 @@ export const BookingPage = () => {
         </div>
 
         {/* ===== BOTTOM INFO SECTION ===== */}
-        <div className="w-full bg-black text-white text-center py-12 mt-10">
-          <motion.h1
-            className="text-3xl font-bold mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Ground Information
-          </motion.h1>
-          <motion.p
-            className="text-lg max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Welcome to our premium sports ground –{" "}
-            {ground.name || name}. Experience top-quality turf, modern amenities,
-            and easy booking.
-          </motion.p>
+        <div className="w-full text-center py-12 mt-10 h-screen pr-20 pl-20">
+          <div className="mb-10">
+            <h1 className="text-2xl font-bold mb-4">Sports Available</h1>
+            <div className="flex justify-center space-x-4 text-green-600 text-4xl">
+              <FaFutbol />
+              <FaBaseballBall />
+            </div>
+          </div>
+
+          {/* ✅ FIXED AMENITIES SECTION */}
+          <div>
+            <h2 className="text-2xl font-bold mb-4">Amenities</h2>
+            <div className="flex flex-wrap justify-center">
+              {ground.amenities && ground.amenities.length > 0 ? (
+                ground.amenities.map((amenity, index) => (
+                  <span
+                    key={index}
+                    className="inline-block bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-full mr-2 mb-2"
+                  >
+                    {amenity}
+                  </span>
+                ))
+              ) : (
+                <p className="text-gray-500">No amenities listed.</p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 

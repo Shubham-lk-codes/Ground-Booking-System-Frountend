@@ -77,7 +77,7 @@ export const BookingPage = () => {
 
   return (
     <>
-      <div className="flex flex-col overflow-hidden">
+      <div className="flex flex-col overflow-hidden pr-20 pl-20">
         <div className="flex flex-row overflow-hidden h-[100vh]">
           {/* LEFT SIDE */}
           <div className="bg-black h-[100vh] w-[50vw] relative overflow-hidden">

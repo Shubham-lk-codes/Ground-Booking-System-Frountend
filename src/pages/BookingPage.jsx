@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Star, Share2 } from "lucide-react";
 import { BookingPagecom } from "../components/BookingPageComp";
 import Footer from "../components/footer";
+import { Navbar } from "../components/navbar";
 
 export const BookingPage = () => {
   const { id, name } = useParams();
@@ -59,7 +60,8 @@ export const BookingPage = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col items-center bg-gray-50 pb-20">
+    <Navbar />
+      <div className="w-full flex flex-col items-center bg-gray-50 pb-20 pt-20">
         {/* ===== TOP SECTION ===== */}
         <div className="flex flex-col w-full max-w-[1300px] px-5 lg:px-0 mt-8">
           {/* NAME + RATING */}

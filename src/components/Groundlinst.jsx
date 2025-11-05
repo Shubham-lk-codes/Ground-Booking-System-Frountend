@@ -78,9 +78,7 @@ export const GroundsList = () => {
         <p className="font-medium">
           Events <span className="text-blue-600">(4)</span>
         </p>
-        <p className="font-medium">
-          Deals <span className="text-blue-600">(2)</span>
-        </p>
+        
       </div>
 
       {/* Grounds Grid */}

@@ -59,7 +59,10 @@ export const GroundsList = () => {
 
             {/* Search Field with Icon */}
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+              <Search
+                className="absolute left-3 top-2.5 text-gray-400"
+                size={18}
+              />
               <input
                 type="text"
                 placeholder="Search venues..."
@@ -73,12 +76,11 @@ export const GroundsList = () => {
       {/* Stats Section */}
       <div className="flex justify-center md:justify-start gap-6 text-gray-700 text-sm md:text-base px-6 mt-6">
         <p className="font-medium">
-          Venues <span className="text-blue-600">(180)</span>
+          Venues <span className="text-blue-600">{grounds.length}</span>
         </p>
         <p className="font-medium">
           Events <span className="text-blue-600">(4)</span>
         </p>
-        
       </div>
 
       {/* Grounds Grid */}

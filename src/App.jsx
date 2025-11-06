@@ -5,20 +5,19 @@ import { LoginPage } from "./pages/LoginPage";
 import { BookGround } from "./pages/PaymentPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { GroundsList } from "./components/Groundlinst";
-import {SignupPage} from "./pages/SignupPage"
-import {AdminDashboard} from "./pages/AdminDasboardPage";
-import {GroundOwnerRegistration} from "./components/GroundOwnerRegistration"
-import {AdminGroundOwnerDashboard} from "./pages/AdminDashboardForOwener"
+import { SignupPage } from "./pages/SignupPage";
+import { AdminDashboard } from "./pages/AdminDasboardPage";
+import { GroundOwnerRegistration } from "./components/GroundOwnerRegistration";
+import { AdminGroundOwnerDashboard } from "./pages/AdminDashboardForOwener";
+import { EventsList } from "./pages/EventsList";
+import { EventDetails } from "./pages/EventDetails";
+import { CreateEvent } from "./pages/CreateEvent";
 //import { useEffect, useState } from "react";
 //import axios from "axios";
 
 export const App = () => {
-
-
   return (
     <>
-      
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -30,11 +29,20 @@ export const App = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/grounds" element={<GroundsList />} />
           <Route path="/groundOwener-dashboard" element={<AdminDashboard />} />
-          <Route path="/register-ground-owner" element={<GroundOwnerRegistration />} />
-          <Route path="/admin-dashboard-for-GroundOwener" element={<AdminGroundOwnerDashboard />} />
+          <Route
+            path="/register-ground-owner"
+            element={<GroundOwnerRegistration />}
+          />
+          <Route
+            path="/admin-dashboard-for-GroundOwener"
+            element={<AdminGroundOwnerDashboard />}
+          />
 
+          <Route path="/" element={<EventsList />} />
+          <Route path="/events/:id" element={<EventDetails />} />
+          <Route path="/create" element={<CreateEvent />} />
         </Routes>
       </BrowserRouter>
     </>
   );
-}
+};

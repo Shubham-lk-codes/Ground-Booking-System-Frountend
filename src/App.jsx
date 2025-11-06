@@ -38,9 +38,9 @@ export const App = () => {
             element={<AdminGroundOwnerDashboard />}
           />
 
-          <Route path="/" element={<EventsList />} />
+          <Route path="/events" element={<EventsList />} />
           <Route path="/events/:id" element={<EventDetails />} />
-          <Route path="/create" element={<CreateEvent />} />
+          <Route path="/event/create" element={<CreateEvent />} />
         </Routes>
       </BrowserRouter>
     </>

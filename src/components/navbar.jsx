@@ -20,9 +20,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div
-        className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50"
-      >
+      <div className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50">
         <div className="h-10 w-[10vw] bg-black text-white pl-5 pt-1 flex items-center font-semibold">
           TurfArena
         </div>
@@ -45,10 +43,11 @@ export const Navbar = () => {
               <IoFootballSharp className="mr-2" /> book
             </h3>
           </Link>
-
-          <h3 className="ml-10 font-bold flex flex-row items-center">
-            <FaBookOpen className="mr-2" /> learn
-          </h3>
+          <link to="/events">
+            <h3 className="ml-10 font-bold flex flex-row items-center">
+              <FaBookOpen className="mr-2" /> events
+            </h3>
+          </link>
         </div>
 
         <div className="ml-auto mr-10 flex flex-row space-x-5 items-center">

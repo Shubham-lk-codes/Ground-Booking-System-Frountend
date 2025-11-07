@@ -5,6 +5,7 @@ import { EventCard } from "../components/EventCard";
 
 export const EventsList = () => {
   const [events, setEvents] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -22,15 +23,30 @@ export const EventsList = () => {
     <>
       <Navbar />
       <div className="max-w-6xl mx-auto mt-10 px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Upcoming Events</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">
+          Upcoming Events
+        </h1>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.length > 0 ? (
             events.map((e) => <EventCard key={e._id} event={e} />)
           ) : (
-            <p className="text-gray-600 text-center col-span-full">No events found.</p>
+            <p className="text-gray-600 text-center col-span-full">
+              No events found.
+            </p>
           )}
         </div>
       </div>
+
+        <div className="p-6">
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          + Create Event
+        </button>
+      </div>
+
+      <CreateEventModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </>
   );
 };

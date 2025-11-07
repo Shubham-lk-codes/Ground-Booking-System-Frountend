@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Navbar } from "../components/navbar";
 import { EventCard } from "../components/EventCard";
+import { CreateEvent } from "./CreateEvent"; // ✅ Correct import
 
 export const EventsList = () => {
   const [events, setEvents] = useState([]);
@@ -26,6 +27,7 @@ export const EventsList = () => {
         <h1 className="text-3xl font-bold text-gray-800 mb-6">
           Upcoming Events
         </h1>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.length > 0 ? (
             events.map((e) => <EventCard key={e._id} event={e} />)
@@ -37,7 +39,8 @@ export const EventsList = () => {
         </div>
       </div>
 
-        <div className="p-6">
+      {/* ✅ Create Event Button */}
+      <div className="p-6 text-center">
         <button
           onClick={() => setShowModal(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -46,7 +49,8 @@ export const EventsList = () => {
         </button>
       </div>
 
-      <CreateEventModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      {/* ✅ Correct component usage */}
+      <CreateEvent isOpen={showModal} onClose={() => setShowModal(false)} />
     </>
   );
 };

@@ -66,7 +66,7 @@ import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-export const CreateEventModal = ({ isOpen, onClose }) => {
+export const CreateEvent = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
     sportType: "",
@@ -89,7 +89,7 @@ export const CreateEventModal = ({ isOpen, onClose }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Event created successfully!");
-      onClose(); // Close modal after creation
+      onClose(); // ✅ Close modal after success
     } catch (err) {
       alert(err.response?.data?.message || "Error creating event");
     }
@@ -110,7 +110,6 @@ export const CreateEventModal = ({ isOpen, onClose }) => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
           >
-            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute top-3 right-3 text-gray-600 hover:text-gray-900"
@@ -164,3 +163,5 @@ export const CreateEventModal = ({ isOpen, onClose }) => {
     </AnimatePresence>
   );
 };
+
+

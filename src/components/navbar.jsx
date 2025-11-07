@@ -18,6 +18,10 @@ export const Navbar = () => {
     navigate("/profile");
   };
 
+  const handleEventsClick = () => {
+    navigate("/events");
+  };
+
   return (
     <>
       <div className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50">
@@ -43,11 +47,14 @@ export const Navbar = () => {
               <IoFootballSharp className="mr-2" /> book
             </h3>
           </Link>
-          <link to="/events">
-            <h3 className="ml-10 font-bold flex flex-row items-center">
-              <FaBookOpen className="mr-2" /> events
-            </h3>
-          </link>
+
+          {/* ✅ Fixed Events section */}
+          <div
+            className="ml-10 font-bold flex flex-row items-center cursor-pointer"
+            onClick={handleEventsClick}
+          >
+            <FaBookOpen className="mr-2" /> events
+          </div>
         </div>
 
         <div className="ml-auto mr-10 flex flex-row space-x-5 items-center">

@@ -23,7 +23,7 @@ export const EventsList = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-6xl mx-auto mt-10 px-4">
+      <div className="max-w-6xl mx-auto mt-10 pt-10  px-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">
           Upcoming Events
         </h1>

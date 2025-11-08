@@ -1,3 +1,89 @@
+// import { IoFootballSharp } from "react-icons/io5";
+// import { MdOutlineSportsGymnastics } from "react-icons/md";
+// import { FaBookOpen } from "react-icons/fa";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useEffect, useState } from "react";
+
+// export const Navbar = () => {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const token = localStorage.getItem("token");
+//     if (token) setIsLoggedIn(true);
+//   }, []);
+
+//   const handleProfileClick = () => {
+//     navigate("/profile");
+//   };
+
+//   const handleEventsClick = () => {
+//     navigate("/events");
+//   };
+
+//   return (
+//     <>
+//       <div className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50 px-3 md:px-6">
+//         {/* Logo */}
+//         <div className="h-10 w-auto bg-black text-white px-4 flex items-center font-semibold text-sm sm:text-base md:text-lg">
+//           TurfArena
+//         </div>
+
+//         {/* Search */}
+//         <nav className="ml-3 sm:ml-5 flex-grow hidden sm:block">
+//           <input
+//             type="text"
+//             placeholder="Search..."
+//             className="w-full sm:w-[40vw] md:w-[30vw] p-2 border border-gray-400 rounded text-sm md:text-base"
+//           />
+//         </nav>
+
+//         {/* Nav links */}
+//         <div className="h-10 w-auto flex flex-row ml-[3vw] items-center text-sm sm:text-base">
+//           <h3 className="ml-4 sm:ml-10 font-bold flex flex-row items-center">
+//             <MdOutlineSportsGymnastics className="mr-2" /> play
+//           </h3>
+
+//           <Link to="/grounds">
+//             <h3 className="ml-4 sm:ml-10 font-bold flex flex-row items-center">
+//               <IoFootballSharp className="mr-2" /> book
+//             </h3>
+//           </Link>
+
+//           <div
+//             className="ml-4 sm:ml-10 font-bold flex flex-row items-center cursor-pointer"
+//             onClick={handleEventsClick}
+//           >
+//             <FaBookOpen className="mr-2" /> events
+//           </div>
+//         </div>
+
+//         {/* Auth / Profile */}
+//         <div className="ml-auto mr-5 sm:mr-10 flex flex-row space-x-3 sm:space-x-5 items-center text-sm sm:text-base">
+//           {isLoggedIn ? (
+//             <div
+//               onClick={handleProfileClick}
+//               className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:bg-blue-700 transition-all"
+//             >
+//               P
+//             </div>
+//           ) : (
+//             <>
+//               <Link to="/signup">
+//                 <h1 className="font-bold">Sign up</h1>
+//               </Link>
+//               <Link to="/login">
+//                 <h1 className="font-bold">Login</h1>
+//               </Link>
+//             </>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+
 import { IoFootballSharp } from "react-icons/io5";
 import { MdOutlineSportsGymnastics } from "react-icons/md";
 import { FaBookOpen } from "react-icons/fa";
@@ -9,6 +95,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check token in localStorage
     const token = localStorage.getItem("token");
     if (token) setIsLoggedIn(true);
   }, []);
@@ -23,47 +110,44 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50 px-3 md:px-6">
-        {/* Logo */}
-        <div className="h-10 w-auto bg-black text-white px-4 flex items-center font-semibold text-sm sm:text-base md:text-lg">
+      <div className="fixed top-0 left-0 w-full h-[9vh] flex flex-row items-center pt-2 bg-white shadow-md z-50">
+        <div className="h-10 w-[10vw] bg-black text-white pl-5 pt-1 flex items-center font-semibold">
           TurfArena
         </div>
 
-        {/* Search */}
-        <nav className="ml-3 sm:ml-5 flex-grow hidden sm:block">
+        <nav className="ml-5">
           <input
             type="text"
             placeholder="Search..."
-            className="w-full sm:w-[40vw] md:w-[30vw] p-2 border border-gray-400 rounded text-sm md:text-base"
+            className="w-[30vw] p-2 border border-gray-400 rounded"
           />
         </nav>
 
-        {/* Nav links */}
-        <div className="h-10 w-auto flex flex-row ml-[3vw] items-center text-sm sm:text-base">
-          <h3 className="ml-4 sm:ml-10 font-bold flex flex-row items-center">
+        <div className="h-10 w-[10vw] flex flex-row ml-[5vw] items-center">
+          <h3 className="ml-10 font-bold flex flex-row items-center">
             <MdOutlineSportsGymnastics className="mr-2" /> play
           </h3>
 
           <Link to="/grounds">
-            <h3 className="ml-4 sm:ml-10 font-bold flex flex-row items-center">
+            <h3 className="ml-10 font-bold flex flex-row items-center">
               <IoFootballSharp className="mr-2" /> book
             </h3>
           </Link>
 
+          {/* ✅ Fixed Events section */}
           <div
-            className="ml-4 sm:ml-10 font-bold flex flex-row items-center cursor-pointer"
+            className="ml-10 font-bold flex flex-row items-center cursor-pointer"
             onClick={handleEventsClick}
           >
             <FaBookOpen className="mr-2" /> events
           </div>
         </div>
 
-        {/* Auth / Profile */}
-        <div className="ml-auto mr-5 sm:mr-10 flex flex-row space-x-3 sm:space-x-5 items-center text-sm sm:text-base">
+        <div className="ml-auto mr-10 flex flex-row space-x-5 items-center">
           {isLoggedIn ? (
             <div
               onClick={handleProfileClick}
-              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:bg-blue-700 transition-all"
+              className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:bg-blue-700 transition-all"
             >
               P
             </div>

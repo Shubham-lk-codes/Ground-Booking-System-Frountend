@@ -75,7 +75,7 @@ export const HomePage = () => {
             className="mt-8 px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={navigateBooking()}
+            onClick={navigateBooking}
           >
             Book Now
           </motion.button>

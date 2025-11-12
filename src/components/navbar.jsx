@@ -47,6 +47,18 @@ export const Navbar = () => {
     setFilteredGrounds(filtered);
   };
 
+    const slugify = (name) =>
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+  const handleBooking = (id, name) => {
+    const slug = slugify(name);
+    navigate(`/grounds/${id}/${slug}`);
+  };
+
+
   // ✅ When a user clicks a result
   const handleSelectGround = (id) => {
     setSearchTerm("");

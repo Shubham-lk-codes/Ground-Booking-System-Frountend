@@ -48,7 +48,7 @@ export const Navbar = () => {
   };
 
   // ✅ When a user clicks a result
-  const handleSelectGround = (groundId) => {
+  const handleSelectGround = (id) => {
     setSearchTerm("");
     setFilteredGrounds([]);
     navigate(`/grounds/${id}`);

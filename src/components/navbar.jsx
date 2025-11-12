@@ -51,7 +51,7 @@ export const Navbar = () => {
   const handleSelectGround = (groundId) => {
     setSearchTerm("");
     setFilteredGrounds([]);
-    navigate(`/grounds/${groundId}`);
+    navigate(`/grounds/${id}`);
   };
 
   const handleProfileClick = () => navigate("/profile");

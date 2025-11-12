@@ -31,6 +31,13 @@ export const Navbar = () => {
     if (token) setIsLoggedIn(true);
   }, []);
 
+  // ✅ Convert name → slug
+  const slugify = (name) =>
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
   // ✅ Handle search input
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -47,23 +54,12 @@ export const Navbar = () => {
     setFilteredGrounds(filtered);
   };
 
-    const slugify = (name) =>
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-
-  const handleBooking = (id, name) => {
+  // ✅ When a user clicks a search result
+  const handleSelectGround = (id, name) => {
     const slug = slugify(name);
-    navigate(`/grounds/${id}/${slug}`);
-  };
-
-
-  // ✅ When a user clicks a result
-  const handleSelectGround = (id) => {
     setSearchTerm("");
     setFilteredGrounds([]);
-    navigate(`/grounds/${id}`);
+    navigate(`/grounds/${id}/${slug}`); // use slug route
   };
 
   const handleProfileClick = () => navigate("/profile");
@@ -93,7 +89,7 @@ export const Navbar = () => {
               {filteredGrounds.map((ground) => (
                 <li
                   key={ground._id}
-                  onClick={() => handleSelectGround(ground._id)}
+                  onClick={() => handleSelectGround(ground._id, ground.name)}
                   className="px-3 py-2 cursor-pointer hover:bg-gray-100 text-sm md:text-base"
                 >
                   {ground.name}

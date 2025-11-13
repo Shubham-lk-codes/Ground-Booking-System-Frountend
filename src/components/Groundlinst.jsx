@@ -37,7 +37,7 @@ export const GroundsList = () => {
 
   return (
     <>
-    
+
       <Navbar />
 
       {/* Header + Filters (One Line Layout) */}

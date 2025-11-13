@@ -7,10 +7,10 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
-    const navigate = useNavigate();
-    const navigateBooking = () => {
-     navigate("/grounds");
-    }
+  const navigate = useNavigate();
+  const navigateBooking = () => {
+    navigate("/grounds");
+  }
   return (
     <>
       <Navbar />

@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 export const SignupPage = () => {
   const [signupData, setSignupData] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false); 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSignupChange = (e) => {
@@ -87,7 +87,7 @@ export const SignupPage = () => {
         </p>
       </div>
 
-     
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}

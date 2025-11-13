@@ -67,11 +67,10 @@ export const BookGround = ({ groundId, userId }) => {
       </button>
       {paymentStatus && (
         <p
-          className={`mt-4 text-center font-semibold ${
-            paymentStatus.includes('Successful')
+          className={`mt-4 text-center font-semibold ${paymentStatus.includes('Successful')
               ? 'text-green-600'
               : 'text-red-600'
-          }`}
+            }`}
         >
           {paymentStatus}
         </p>

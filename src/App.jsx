@@ -6,7 +6,7 @@ import { BookGround } from "./pages/PaymentPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { GroundsList } from "./components/Groundlinst";
 import { SignupPage } from "./pages/SignupPage";
-import { AdminDashboard } from "./pages/AdminDasboardPage";
+import { GroundOwenerDashboard } from "./pages/GroundOwenerDashboard";
 import { GroundOwnerRegistration } from "./components/GroundOwnerRegistration";
 import { AdminGroundOwnerDashboard } from "./pages/AdminDashboardForOwener";
 import { EventsList } from "./pages/EventsList";
@@ -28,7 +28,7 @@ export const App = () => {
           <Route path="/grounds/:id/:name" element={<BookingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/grounds" element={<GroundsList />} />
-          <Route path="/groundOwener-dashboard" element={<AdminDashboard />} />
+          <Route path="/groundOwener-dashboard" element={<GroundOwenerDashboard />} />
           <Route
             path="/register-ground-owner"
             element={<GroundOwnerRegistration />}

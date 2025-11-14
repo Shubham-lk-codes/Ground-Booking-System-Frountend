@@ -6,7 +6,7 @@ import axios from 'axios';
 axios.defaults.baseURL = "http://localhost:5000"; // Replace with your backend URL
 axios.defaults.withCredentials = true; // Include cookies for authentication
 
-export const AdminDashboard = () => {
+export const GroundOwenerDashboard = () => {
   const [grounds, setGrounds] = useState([]); // Store grounds data
   const [formData, setFormData] = useState({
     name: '',
@@ -233,4 +233,4 @@ export const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default GroundOwenerDashboard;

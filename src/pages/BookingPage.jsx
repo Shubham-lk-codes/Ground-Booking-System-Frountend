@@ -23,6 +23,7 @@ export const BookingPage = () => {
     try {
       const fetchRatting=async()=>{
         const res=await axios.get(`http://localhost:5000/grounds/rating/${id}`);
+        setRating(res.data.rating);
       }
     } catch (error) {
       console.log(error)

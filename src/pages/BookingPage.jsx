@@ -16,6 +16,8 @@ export const BookingPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [grounds, setGrounds] = useState([]);
+  const [rating,setRating]=useState(0);
+  const [essage,setMessage]=useState("");
 
   useEffect(() => {
     const fetchGrounds = async () => {

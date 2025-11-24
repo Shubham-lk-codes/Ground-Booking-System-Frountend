@@ -19,6 +19,16 @@ export const BookingPage = () => {
   const [rating,setRating]=useState(0);
   const [essage,setMessage]=useState("");
 
+  useEffect(()=>{
+    try {
+      const fetchRatting=async()=>{
+        const res=await axios.get(`http://localhost:5000/grounds/rating/${id}`);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
   useEffect(() => {
     const fetchGrounds = async () => {
       try {
